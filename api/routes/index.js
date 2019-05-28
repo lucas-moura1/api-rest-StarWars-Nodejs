@@ -11,4 +11,33 @@ router.get('/api', function(req, res, next) {
   });  
 });
 
+router.post('/api/', function (req, res, next) {
+  var db = require('../db');
+  var Customer = db.Mongoose.model('customers', db.CustomerSchema, 'customers');
+  var newcustomers = new Customer ({ nome : req.body.nome, clima : req.body.clima, terreno : req.body.terreno});
+  newcustomers.save(function (err) {
+    if (err) {
+      res.status(500).json({ error: err.message});
+      res.end();
+      return;
+    }
+    res.json(newcustomers);
+    res.end();
+  });
+});
+
+router.delete('/api/:nome', function (req, res, next) {
+  var db = require('../db');
+  var Customer = db.Mongoose.model('customers', db.CustomerSchema, 'customers');
+  Customer.find({ _nome: req.params.nome }).remove(function (err) {
+      if (err) {
+          res.status(500).json({ error: err.message });
+          res.end();
+          return;
+      }
+      res.json({success: true});
+      res.end();
+  });
+});
+
 module.exports = router;
