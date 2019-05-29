@@ -3,6 +3,7 @@
         <h2 class="painel-titulo">{{ name }}</h2>
         <div class="painel-corpo-clima">Clima = {{ clima }}</div>
         <div class="painel-corpo-terreno">Terreno = {{ terreno }}</div>
+        <div class="painel-corpo-filmes">Quantidade de filmes = {{ filmes }}</div>
     </div>    
 </template>
 
@@ -19,6 +20,10 @@ export default {
 
       terreno: {
         type: String
+      },
+
+      filmes: {
+        types: Array
       }
     }
 }
