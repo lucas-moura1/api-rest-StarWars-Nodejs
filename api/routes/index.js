@@ -20,7 +20,7 @@ router.get('/api/:nome', function(req, res, next) {
   });  
 });
 
-router.get('/api/:id', function (req, res, next) {
+router.get('/api/:_id', function (req, res, next) {
   var db = require('../db');
   var Customer = db.Mongoose.model('customers', db.CustomerSchema, 'customers');
   Customer.find({ _id: req.params.id }).lean().exec(function (e, docs) {
