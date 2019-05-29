@@ -3,7 +3,7 @@
         <h2 class="painel-titulo">{{ name }}</h2>
         <div class="painel-corpo-clima">Clima = {{ clima }}</div>
         <div class="painel-corpo-terreno">Terreno = {{ terreno }}</div>
-        <div class="painel-corpo-filmes">Quantidade de filmes = {{ filmes }}</div>
+        <div class="painel-corpo-filmes">Quantidade de filmes = {{ filmes.length }}</div>
     </div>    
 </template>
 
@@ -61,6 +61,12 @@ export default {
   }
 
   .painel-corpo-terreno {
+    font-family: sans-serif;
+    font-size: x-large;
+    padding: 10px 20px;
+  }
+
+  .painel-corpo-filmes {
     font-family: sans-serif;
     font-size: x-large;
     padding: 10px 20px;

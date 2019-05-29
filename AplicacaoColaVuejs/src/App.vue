@@ -4,7 +4,7 @@
 
     <div class="planets">
       <div class="planets-item">
-        <meu-painel :name="planets.name" :clima="planets.climate" :terreno="planets.terrain" :filmes="planets.films.lenght">
+        <meu-painel :name="planets.name" :clima="planets.climate" :terreno="planets.terrain" :filmes="planets.films">
           <div class="planets-item-corpo"></div>
         </meu-painel>      
       </div>
