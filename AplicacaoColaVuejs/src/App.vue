@@ -13,6 +13,7 @@
 </template>
 
 <script>
+
 import Painel from './components/shared/painel/Painel.vue';
 
 export default {
@@ -27,11 +28,20 @@ export default {
     };
   },
 
+  methods: {
+    randomPlanet: function() {
+      this.loading = true;
+
+      let randomNumb = Math.floor(Math.random() * (61 + 1));
+
+      this.$http.get('https://swapi.co/api/planets/' + randomNumb)
+      .then(response=>{
+          this.planets = response.data
+      });
+    }
+  },
   created() {
-    this.$http
-      .get("https://swapi.co/api/planets/5/?format=json")
-      .then(res => res.json())
-      .then(planets => (this.planets = planets), err => console.log(err));
+      this.randomPlanet();
   }
 };
 </script>
