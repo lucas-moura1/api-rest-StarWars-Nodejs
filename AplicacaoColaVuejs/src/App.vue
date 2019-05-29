@@ -2,17 +2,13 @@
   <div class="corpo">
     <h1 class="centralizado">{{ titulo }}</h1>
 
-    <input type="search" class="filtro" v-on:input="filtro = $event.target.value" placeholder="Filtre por Título">
-
-    <ul class="lista-fotos">
-      <li class="lista-fotos-item" v-for="foto of fotos" :key="foto.id">
-
-        <meu-painel :titulo="foto.titulo">
-          <img class="imagem-responsiva" :src="foto.url" :alt="foto.titulofoto">
-        </meu-painel>
-            
-      </li>
-    </ul>
+    <div class="planets">
+      <div class="planets-item">
+        <meu-painel :name="planets.name" :clima="planets.climate" :terreno="planets.terrain">
+          <div class="planets-item-corpo"></div>
+        </meu-painel>      
+      </div>
+    </div>
   </div>
 </template>
 
@@ -27,17 +23,15 @@ export default {
 
   data() {
     return {
-      titulo: "ProjetoVue",
-      fotos: [],
-      filtro: ''
+      titulo: "Planets"
     };
   },
 
   created() {
     this.$http
-      .get("http://localhost:3000/v1/fotos")
+      .get("https://swapi.co/api/planets/5/?format=json")
       .then(res => res.json())
-      .then(fotos => (this.fotos = fotos), err => console.log(err));
+      .then(planets => (this.planets = planets), err => console.log(err));
   }
 };
 </script>
@@ -53,24 +47,14 @@ export default {
     text-align: center;
   }
 
-  .lista-fotos {
-    list-style: none;
+  .planets {
+    padding: 40px 0px 0px;
   }
 
-  .lista-fotos .lista-fotos-item {
-    display: inline-block;
-  }
-
-  .imagem-responsiva{
-    width: 100%;
-  }
-
-  .filtro{
-    display: block;
-    width: 100%;
-    padding: 0.5em;
+  .planets-item {
+    display: flex;
     align-items: center;
-    margin: 2em;
-    font: 1em normal; 
+    justify-content: center;
   }
+
 </style>

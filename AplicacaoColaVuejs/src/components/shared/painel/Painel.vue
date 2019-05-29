@@ -1,13 +1,26 @@
 <template>
     <div class="painel"> 
-        <h2 class="painel-titulo">{{ titulo }}</h2>
-        <slot class="painel-conteudo"></slot>
+        <h2 class="painel-titulo">{{ name }}</h2>
+        <div class="painel-corpo-clima">Clima = {{ clima }}</div>
+        <div class="painel-corpo-terreno">Terreno = {{ terreno }}</div>
     </div>    
 </template>
 
 <script>
 export default {
-    props: ['titulo']
+    props: {
+      name: {
+        type: String
+      },
+
+      clima: {
+        type: String
+      },
+
+      terreno: {
+        type: String
+      }
+    }
 }
 </script>
 
@@ -21,10 +34,10 @@ export default {
     display: inline-block;
     margin: 15px;
     box-shadow: 10px 5px 10px grey;
-    width: 200px;
+    width: 460px;
     height: 100%;
     vertical-align: top;
-    text-align: center;
+    text-align: left;
   }
 
   .painel .painel-titulo {
@@ -36,9 +49,16 @@ export default {
     text-transform: uppercase;
   }
 
-  * {
-    box-shadow: 5px 5px 5px;
+  .painel-corpo-clima {
+    font-family: sans-serif;
+    font-size: x-large;
+    padding: 10px 20px;
   }
 
+  .painel-corpo-terreno {
+    font-family: sans-serif;
+    font-size: x-large;
+    padding: 10px 20px;
+  }
 
 </style>
