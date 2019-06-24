@@ -48,19 +48,3 @@ GET: localhost:3000/api/:_id
 
 DELETE: localhost:3000/api/:nome
 
-# Aplicação Cola
-
-A pasta 'AplicacaoColaVeujs' contém uma aplicação Front-end em Vuejs que pega aleatoriamente um planeta da franquia na API: https://swapi.co/ e exiba seus dados: Clima, terreno e quantos filmes da franquia ele apareceu, para servir como cola. 
-
-## Iniciando a aplicação
-
-Acesse pelo terminal a pasta 'AplicacaoColaVeujs' e siga os comandos abaixo:
-
-Ps. É necessário ter o node instalado na máquina.
-
-```bash
-npm install
-```
-```bash
-npm run dev
-```
