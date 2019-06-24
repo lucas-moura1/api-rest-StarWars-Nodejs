@@ -13,7 +13,7 @@ Funcionalidades da Aplicação:
 Tenha o MongoDb instalado na sua máquina e para iniciá-lo apontando para a pasta da api execute o seguinte comando no terminal:
 
 ```bash
-mongod --dbpath "~/ApiRest-Node-MongoDB/api/data/"
+mongod --dbpath "~/ApiRest-Node-MongoDB/data/"
 ```
 
 Acesse pelo terminar a pasta 'api' e siga os comandos abaixo:
