@@ -4,10 +4,11 @@
   "private": true,
   "scripts": {
     "test": "mocha",
-    "start": "node ./bin/www"
+    "start": "node src/bin/www"
   },
   "dependencies": {
     "chai": "^4.2.0",
+    "chai-http": "^4.3.0",
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
     "ejs": "~2.6.1",
@@ -16,6 +17,7 @@
     "mocha": "^6.1.4",
     "mongodb": "^3.2.6",
     "mongoose": "^5.5.11",
-    "morgan": "~1.9.1"
+    "morgan": "~1.9.1",
+    "should": "^13.2.3"
   }
 }
