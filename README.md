@@ -38,13 +38,13 @@ GET: localhost:3000/api
 
 ##### Buscar por nome;
 
-GET: localhost:3000/api/:nome
+GET: localhost:3000/api/nome/:nome
 
 #### Buscar por ID;
 
-GET: localhost:3000/api/:_id
+GET: localhost:3000/api/id/:_id
 
 #### Remover planeta
 
-DELETE: localhost:3000/api/:nome
+DELETE: localhost:3000/api/del/nome/:nome
 
