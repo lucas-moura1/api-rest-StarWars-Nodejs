@@ -5,7 +5,7 @@ var customerSchema = new mongoose.Schema({
     nome: String,
     clima: String,
     terreno: String
-}, { collection: 'customers' },
+},
     {versionKey: false}
 );
 

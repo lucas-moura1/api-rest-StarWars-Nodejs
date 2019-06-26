@@ -11,7 +11,7 @@ router.get('/api', function(req, res, next) {
   });  
 });
 
-router.get('/api/:nome', function(req, res, next) {
+router.get('/api/nome/:nome', function(req, res, next) {
   var db = require('../db');
   var Customer = db.Mongoose.model('customers', db.CustomerSchema, 'customers');
   Customer.find({ nome: req.params.nome}).lean().exec(function(e,docs){
@@ -20,10 +20,10 @@ router.get('/api/:nome', function(req, res, next) {
   });  
 });
 
-router.get('/api/:_id', function (req, res, next) {
+router.get('/api/id/:_id', function (req, res, next) {
   var db = require('../db');
   var Customer = db.Mongoose.model('customers', db.CustomerSchema, 'customers');
-  Customer.find({ _id: req.params.id }).lean().exec(function (e, docs) {
+  Customer.findById(req.params._id, function (e, docs) {
       res.json(docs);
       res.end();
   });
@@ -44,7 +44,7 @@ router.post('/api/', function (req, res, next) {
   });
 });
 
-router.delete('/api/:nome', function (req, res, next) {
+router.delete('/api/del/nome/:nome', function (req, res, next) {
   var db = require('../db');
   var Customer = db.Mongoose.model('customers', db.CustomerSchema, 'customers');
   Customer.find({ nome: req.params.nome }).remove(function (err) {
