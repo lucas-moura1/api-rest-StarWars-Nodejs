@@ -21,7 +21,7 @@ describe('Teste API Node', function() {
 
     it('Testando GET por id, deve retornar os dado do planeta pesquisado', function(done)  {
         
-        let _id = "5d12d403f3b4f921145f9382";
+        let _id = "5d143ab8bc21f71f5817c295";
        
         chai.request(server)
             .get('/api/id/' + _id)
