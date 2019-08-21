@@ -4,7 +4,7 @@
  * Module dependencies.
  */
 
-var app = require('../server');
+var app = require('../../config/custom-process');
 var debug = require('debug')('apitest:server');
 var http = require('http');
 
