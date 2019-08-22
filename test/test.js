@@ -2,7 +2,7 @@ process.env.NODE_ENV = 'test';
 
 let chai = require('chai');
 let chaiHttp = require('chai-http');
-let server = require('../src/custom-process')
+let server = require('../src/config/custom-process')
 let should = chai.should();
 
 chai.use(chaiHttp);
