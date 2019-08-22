@@ -1,4 +1,4 @@
-var mongoose = require('mongoose');
+const mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/api', { useNewUrlParser: true });
 
 var customerSchema = new mongoose.Schema({

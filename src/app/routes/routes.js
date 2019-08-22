@@ -1,10 +1,10 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
 
 /* GET home page. */
 router.get('/api', function(req, res, next) {
-  var db = require('../db');
-  var Customer = db.Mongoose.model('customers', db.CustomerSchema, 'customers');
+  const db = require('../db');
+  const Customer = db.Mongoose.model('customers', db.CustomerSchema, 'customers');
   Customer.find({}).lean().exec(function(e,docs){
     res.json(docs);
     res.end();
@@ -12,8 +12,8 @@ router.get('/api', function(req, res, next) {
 });
 
 router.get('/api/nome/:nome', function(req, res, next) {
-  var db = require('../db');
-  var Customer = db.Mongoose.model('customers', db.CustomerSchema, 'customers');
+  const db = require('../db');
+  const Customer = db.Mongoose.model('customers', db.CustomerSchema, 'customers');
   Customer.find({ nome: req.params.nome}).lean().exec(function(e,docs){
     res.json(docs);
     res.end();
@@ -21,8 +21,8 @@ router.get('/api/nome/:nome', function(req, res, next) {
 });
 
 router.get('/api/id/:_id', function (req, res, next) {
-  var db = require('../db');
-  var Customer = db.Mongoose.model('customers', db.CustomerSchema, 'customers');
+  const db = require('../db');
+  const Customer = db.Mongoose.model('customers', db.CustomerSchema, 'customers');
   Customer.findById(req.params._id, function (e, docs) {
       res.json(docs);
       res.end();
@@ -30,9 +30,9 @@ router.get('/api/id/:_id', function (req, res, next) {
 });
 
 router.post('/api/', function (req, res, next) {
-  var db = require('../db');
-  var Customer = db.Mongoose.model('customers', db.CustomerSchema, 'customers');
-  var newcustomers = new Customer ({ nome : req.body.nome, clima : req.body.clima, terreno : req.body.terreno});
+  const db = require('../db');
+  const Customer = db.Mongoose.model('customers', db.CustomerSchema, 'customers');
+  const newcustomers = new Customer ({ nome : req.body.nome, clima : req.body.clima, terreno : req.body.terreno});
   newcustomers.save(function (err) {
     if (err) {
       res.status(500).json({ error: err.message});
@@ -45,8 +45,8 @@ router.post('/api/', function (req, res, next) {
 });
 
 router.delete('/api/del/nome/:nome', function (req, res, next) {
-  var db = require('../db');
-  var Customer = db.Mongoose.model('customers', db.CustomerSchema, 'customers');
+  const db = require('../db');
+  const Customer = db.Mongoose.model('customers', db.CustomerSchema, 'customers');
   Customer.find({ nome: req.params.nome }).remove(function (err) {
       if (err) {
           res.status(500).json({ error: err.message });
