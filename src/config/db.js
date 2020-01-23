@@ -1,12 +1,30 @@
-const mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/api', { useNewUrlParser: true });
+const mongoose = require('mongoose')
 
-var customerSchema = new mongoose.Schema({
-    nome: String,
-    clima: String,
-    terreno: String
+mongoose
+    .connect('mongodb://localhost/planet', { 
+        useCreateIndex: true, 
+        useNewUrlParser: true })
+    .catch(err => {
+        console.error(err)
+        process.exit(1)
+    })
+
+var planetSchema = new mongoose.Schema({
+    nome: {
+        type: String,
+        required: true,
+        unique: true
+    },
+    clima: {
+        type: String,
+        required: true
+    },
+    terreno: {
+        type: String,
+        required: true
+    }
 },
-    {versionKey: false}
-);
+    { versionKey: false }
+)
 
-module.exports = { Mongoose: mongoose, CustomerSchema: customerSchema }
+module.exports =  mongoose.model('planet', planetSchema)
