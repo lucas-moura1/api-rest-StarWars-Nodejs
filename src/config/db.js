@@ -9,7 +9,7 @@ mongoose
         process.exit(1)
     })
 
-var planetSchema = new mongoose.Schema({
+const planetSchema = new mongoose.Schema({
     nome: {
         type: String,
         required: true,
