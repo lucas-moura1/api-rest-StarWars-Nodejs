@@ -13,11 +13,12 @@ app.use(express.static(path.join(__dirname, 'public')))
 
 app.use('/', routes)
 
+app.use(function(req, res, next) {
+  return res.status(404).json({ error: err.message })
+})
+
 app.use(function(err, req, res, next) {
-  res.locals.message = err.message
-  res.locals.error = req.app.get('env') === 'development' ? err : {}
-  res.status(err.status || 500)
-  res.json({ error: err })
+  return res.status(500).json({ error: err.message })
 })
 
 module.exports = app
