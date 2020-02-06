@@ -4,15 +4,18 @@ const logger = require('morgan')
 
 const app = express()
 
+const database = require('./middleware/database')
+
 const routes = require('./routes')
 
 app.use(logger('dev'))
+database(app)
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
-app.use(routes.routes())
+app.use(routes)
 
 app.use(function(req, res, next) {
-  return res.status(404).json({ error: err.message })
+  return res.status(404).json({ error: 'Not found' })
 })
 
 app.use(function(err, req, res, next) {
