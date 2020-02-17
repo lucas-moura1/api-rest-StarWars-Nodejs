@@ -17,9 +17,9 @@ module.exports = {
     async findPanetById(req, res) {
         planetId = req.params.id
 
-        Planet.findById({ _id: planetId}).lean().exec()
+        Planet.findById(planetId).lean().exec()
             .then(data => {
-                if (data.length !== 0)
+                if (data !== null)
                     res.json(data)
                 else
                     res.status(409).json({ error: 'Document not found'})
@@ -57,12 +57,13 @@ module.exports = {
 
     async updateById(req, res) {
         const plantId = req.params.id
-
-        Planet.findByIdAndUpdate(plantId, req.body)
-            .then(() => {
-                const newPlanet = await this.findPanetById(planetId)
-                res.json(newPlanet)
-            })
+        console.log(req.body);
+        
+        Planet.findByIdAndUpdate(JSON.parse(plantId), { $set: req.body}, (err, res) => {
+            if (!err) res.json(res)
+            else res.json({ error: res.message})
+        })
+            
 
     },
 
