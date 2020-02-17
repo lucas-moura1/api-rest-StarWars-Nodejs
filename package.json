@@ -2,22 +2,26 @@
   "name": "apitest",
   "version": "0.0.0",
   "private": true,
+  "main": "src/app.js",
   "scripts": {
     "test": "mocha --timeout 10000",
-    "start": "node src/bin/www"
+    "start": "node src/app.js",
+    "dev": "nodemon src/app.js"
   },
   "dependencies": {
     "chai": "^4.2.0",
     "chai-http": "^4.3.0",
-    "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
+    "dotenv-flow": "^3.1.0",
     "ejs": "~2.6.1",
     "express": "~4.16.1",
-    "http-errors": "~1.6.3",
-    "mocha": "^6.1.4",
     "mongodb": "^3.2.6",
     "mongoose": "^5.7.5",
     "morgan": "~1.9.1",
     "should": "^13.2.3"
+  },
+  "devDependencies": {
+    "mocha": "^6.1.4",
+    "nodemon": "^1.11.0"
   }
 }
