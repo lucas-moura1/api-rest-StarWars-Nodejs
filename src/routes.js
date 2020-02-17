@@ -1,11 +1,16 @@
 const express = require('express')
+const app = express()
 const router = express.Router()
 
 const planets = require('./modules/planet/routes')
 
-router.get('/', (req, res) => {
-  res.send('Ok')
-})
+app.use(planets)
 
-module.exports = router
+// router.get('/', (req, res) => {
+//   res.send('Ok')
+// })
+
+// router.use('/api', app.route())
+
+module.exports = app
 
