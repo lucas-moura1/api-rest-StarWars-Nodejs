@@ -4,7 +4,8 @@ module.exports = app => {
     mongoose
         .connect('mongodb://localhost/planet', { 
             useCreateIndex: true, 
-            useNewUrlParser: true })
+            useNewUrlParser: true,
+            useFindAndModify: false })
         .then(console.log(`MongoDB connected`)
         )
         .catch(err => {
