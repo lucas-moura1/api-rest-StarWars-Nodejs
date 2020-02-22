@@ -1,0 +1,29 @@
+version: '3'
+
+services: 
+    api:
+        container_name: api
+        restart: always
+        build: .
+        command: npm run dev
+        volumes:
+            - .:/usr/app/
+        environment: 
+            NODE_ENV: 'development'
+            DB_MONGODB_NAME_TEST: 'api_planet_test'
+            DB_MONGODB_NAME_DEV: 'api_planet'
+            DB_MONGODB_ENDPOINT: 'mongodb://db'
+        ports: 
+            - '3000:3000'
+        depends_on:
+            - db
+        links:
+            - db
+
+    db:
+        container_name: mongodb
+        image: 'mongo'
+        volumes: 
+            - ./data:/data/db
+        ports: 
+            - '27017:27017'
