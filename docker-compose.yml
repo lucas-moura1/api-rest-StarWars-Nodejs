@@ -13,6 +13,8 @@ services:
             DB_MONGODB_NAME_TEST: 'api_planet_test'
             DB_MONGODB_NAME_DEV: 'api_planet'
             DB_MONGODB_ENDPOINT: 'mongodb://db'
+            SECRET_KEY: 'API_SECRET_123'
+            USER_APP: 'ApiPlanetUser:PlaneT123'
         ports: 
             - '3000:3000'
         depends_on:

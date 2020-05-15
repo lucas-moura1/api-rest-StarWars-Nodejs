@@ -18,7 +18,12 @@ const databaseConfig = {
   useFindAndModify: false
 }
 
+const userApp = process.env.USER_APP
+const secretKey = process.env.SECRET_KEY
+
 module.exports = {
   databaseUrl,
-  databaseConfig
+  databaseConfig,
+  userApp,
+  secretKey
 }
