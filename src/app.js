@@ -7,17 +7,17 @@ const database = require('./middleware/database')
 
 const routes = require('./routes')
 
-database(app)
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
+database(app)
 app.use(routes)
 
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   return res.status(404).json({ error: 'Not found' })
 })
 
-app.use(function(err, req, res, next) {
-  return res.status(500).json({ error: err.message })
+app.use(function (err, req, res, next) {
+  return res.status(err.statusCode).json({ error: err.message })
 })
 
 app.listen(3000, () => {

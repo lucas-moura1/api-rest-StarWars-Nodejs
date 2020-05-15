@@ -4,6 +4,14 @@
         "commonjs": true,
         "es6": true
     },
+    "rules": {
+        "prettier/prettier": "warn",
+        "no-unused-vars": "warn",
+        "indent": "warn",
+        "quotes": "warn",
+        "space-before-function-paren": "warn",
+        "eol-last": "warn"
+    },
     "extends": [
         "standard"
     ],
