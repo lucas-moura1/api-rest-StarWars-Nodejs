@@ -22,4 +22,4 @@ const planetSchema = new mongoose.Schema({
 { versionKey: false }
 )
 
-module.exports =  mongoose.model('planet', planetSchema)
+module.exports = mongoose.model('planet', planetSchema)
