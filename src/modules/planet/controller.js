@@ -1,5 +1,5 @@
 const Planet = require('./model')
-const requestStarWarsApi = require('../../lib/requestStartWarsApi')
+const getCountFilms = require('../../utils/requestStartWarsApi')
 
 module.exports = {
   async list (req, res) {
@@ -25,9 +25,9 @@ module.exports = {
   },
 
   async findPlanetByName (req, res) {
-    const planetName = req.params.nome
+    const planetName = req.params.name
 
-    Planet.find({ nome: planetName }).lean().exec()
+    Planet.find({ name: planetName }).lean().exec()
       .then(data => {
         if (data.length !== 0) {
           res.json(data)
@@ -36,36 +36,44 @@ module.exports = {
   },
 
   async create (req, res) {
-    const planet = new Planet({
-      nome: req.body.nome,
-      clima: req.body.clima,
-      terreno: req.body.terreno
-    })
+    try {
+      const planet = new Planet({
+        name: req.body.name,
+        weather: req.body.weather,
+        ground: req.body.ground
+      })
 
-    await planet.save()
-      .then(() => {
-        res.status(200).json(planet)
-      })
-      .catch(err => {
-        res.status(409).json({ error: err.message })
-        res.end()
-      })
+      const numberOfFilms = await getCountFilms(planet.name)
+
+      planet.numberOfFilms = numberOfFilms
+
+      const result = await planet.save()
+
+      res.status(200).json(result)
+    } catch (err) {
+      res.status(err.statusCode || 409).json({ error: err.message })
+      res.end()
+    }
   },
 
   async updateById (req, res) {
-    const plantId = req.params.id
-    console.log(req.body)
+    try {
+      const planetId = req.params.id
+      const planetBody = req.body
+      console.log(req.body)
 
-    Planet.findByIdAndUpdate(JSON.parse(plantId), { $set: req.body }, (err, res) => {
-      if (!err) res.json(res)
-      else res.json({ error: res.message })
-    })
+      const result = await Planet.findOneAndUpdate({ _id : planetId }, planetBody)
+
+      res.status(200).json(result)
+    } catch (err) {
+      res.json({ error: err.message })
+    }
   },
 
   async delete (req, res) {
-    const planetName = req.params.nome
+    const planetName = req.params.name
 
-    Planet.deleteOne({ nome: planetName }).exec()
+    Planet.deleteOne({ name: planetName }).exec()
       .then(data => {
         if (data.deletedCount !== 0) {
           res.json({
@@ -74,7 +82,7 @@ module.exports = {
           })
         } else {
           res.json({
-            success: true,
+            success: false,
             deletedCount: data.deletedCount
           })
         }
