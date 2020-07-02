@@ -5,7 +5,7 @@ const isBase64 = require('is-base64')
 
 const jsonToken = {
   user: userApp.split(':')[0],
-  exp: Math.floor(Date.now() / 1000) + 60 * 5
+  exp: Math.floor(Date.now() / 1000) + 60 * 9
 }
 
 const validateBase64 = userEncoded => {
