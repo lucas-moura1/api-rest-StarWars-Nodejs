@@ -21,9 +21,12 @@ const databaseConfig = {
 const userApp = process.env.USER_APP
 const secretKey = process.env.SECRET_KEY
 
+const swapi = process.env.URL_SWAPI
+
 module.exports = {
   databaseUrl,
   databaseConfig,
   userApp,
-  secretKey
+  secretKey,
+  swapi
 }
