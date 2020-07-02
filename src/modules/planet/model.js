@@ -1,22 +1,22 @@
 const mongoose = require('mongoose')
 
 const planetSchema = new mongoose.Schema({
-  nome: {
+  name: {
     type: String,
     required: true,
     unique: true
   },
-  clima: {
+  weather: {
     type: String,
     required: true
   },
-  terreno: {
+  ground: {
     type: String,
     required: true
   },
-  quantidadeDeFilmes: {
+  numberOfFilms: {
     type: Number,
-    required: false
+    required: true
   }
 },
 { versionKey: false }
