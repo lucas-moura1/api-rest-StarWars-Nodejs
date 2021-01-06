@@ -4,7 +4,7 @@
   "private": true,
   "main": "src/app.js",
   "engines": {
-    "node": "12.16"
+    "node": "12.20.0"
   },
   "scripts": {
     "test": "mocha --timeout 10000",
