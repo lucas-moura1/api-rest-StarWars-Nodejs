@@ -1,4 +1,4 @@
-FROM node:12
+FROM node:14
 
 WORKDIR /usr/app
 
@@ -6,7 +6,7 @@ RUN rm -rf node_modules/
 
 COPY package.json .
 
-RUN yarn install
+RUN yarn
 
 COPY . .
 

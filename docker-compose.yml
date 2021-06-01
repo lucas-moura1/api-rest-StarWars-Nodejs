@@ -4,17 +4,17 @@ services:
     api:
         container_name: api
         build: .
-        command: npm run dev
+        command: yarn dev
         volumes:
             - .:/usr/app/
         environment: 
             NODE_ENV: 'development'
+            PORT: 3000
             DB_MONGODB_NAME_TEST: 'api_planet_test'
             DB_MONGODB_NAME_DEV: 'api_planet'
             DB_MONGODB_ENDPOINT: 'mongodb://db'
-            SECRET_KEY: 'API_SECRET_123'
-            USER_APP: 'ApiPlanetUser:PlaneT123'
             URL_SWAPI: 'https://swapi.dev/api/planets/'
+            LOGGER_LEVEL: debug
         ports: 
             - '3000:3000'
         depends_on:
