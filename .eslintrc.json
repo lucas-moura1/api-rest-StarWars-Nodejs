@@ -1,25 +1,31 @@
 {
     "env": {
         "browser": true,
-        "commonjs": true,
-        "es6": true
-    },
-    "rules": {
-        "prettier/prettier": "warn",
-        "no-unused-vars": "warn",
-        "indent": "warn",
-        "quotes": "warn",
-        "space-before-function-paren": "warn",
-        "eol-last": "warn"
+        "es2021": true,
+        "jest": true
     },
     "extends": [
         "standard"
     ],
-    "globals": {
-        "Atomics": "readonly",
-        "SharedArrayBuffer": "readonly"
-    },
     "parserOptions": {
-        "ecmaVersion": 2018
+        "ecmaVersion": 12
+    },
+    "rules": {
+        "prettier/prettier": "warn",
+        "no-unused-vars": "warn",
+        "indent": ["warn", 4],
+        "quotes": "warn",
+        "space-before-function-paren": "warn",
+        "eol-last": "warn",
+        "semi": ["warn", "never"],
+        "no-trailing-spaces": ["warn"],
+        "max-len": [
+            "warn",
+            { 
+                "code": 120,
+                "ignoreStrings": true
+            }
+        ],
+        "padded-blocks": "off"
     }
 }
