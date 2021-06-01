@@ -1,32 +1,36 @@
+const {
+    URL_SWAPI,
+    PORT,
+    NODE_ENV,
+    LOGGER_LEVEL
+} = process.env
+
 const environment = process.env.NODE_ENV || 'production'
 
+const IS_TEST = NODE_ENV === 'test'
+
 const databaseName = {
-  test: process.env.DB_MONGODB_NAME_TEST,
-  development: process.env.DB_MONGODB_NAME_DEV
+    test: process.env.DB_MONGODB_NAME_TEST,
+    development: process.env.DB_MONGODB_NAME_DEV
 }[environment]
 
 const databaseUrl = {
-  test: `${process.env.DB_MONGODB_ENDPOINT}/${databaseName}`,
-  development: `${process.env.DB_MONGODB_ENDPOINT}/${databaseName}`,
-  production: `${process.env.MONGODB_URL}`
+    test: `${process.env.DB_MONGODB_ENDPOINT}/${databaseName}`,
+    development: `${process.env.DB_MONGODB_ENDPOINT}/${databaseName}`
 }[environment]
 
 const databaseConfig = {
-  useCreateIndex: true,
-  useUnifiedTopology: true,
-  useNewUrlParser: true,
-  useFindAndModify: false
+    useCreateIndex: true,
+    useUnifiedTopology: true,
+    useNewUrlParser: true,
+    useFindAndModify: false
 }
 
-const userApp = process.env.USER_APP
-const secretKey = process.env.SECRET_KEY
-
-const swapi = process.env.URL_SWAPI
-
 module.exports = {
-  databaseUrl,
-  databaseConfig,
-  userApp,
-  secretKey,
-  swapi
+    URL_SWAPI,
+    PORT,
+    IS_TEST,
+    LOGGER_LEVEL,
+    databaseUrl,
+    databaseConfig
 }
