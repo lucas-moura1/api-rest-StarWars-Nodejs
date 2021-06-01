@@ -1,63 +1,138 @@
 # Api-Rest-Node-MongoDB
 
-Este repositório contém uma API REST em Node.js que contenha os dados dos planetas que são obtidos através do banco de dados MongoDB da aplicação, sendo inserido manualmente: Nome, Clima, Terreno.
+Este repositório contém uma API REST em Node.js que manipula os dados dos planetas que são obtidos através do banco de dados MongoDB.
 
 Tecnologias utilizadas:
 - Express;
 - Mongoose;
-- JsonWebToken;
-- nodejs-base64;
 - Eslint e prettier utilizando o style guide ***standard***
-- Mocha e Chai para os testes.
+- Jest para os testes.
 
-Funcionalidades da Aplicação: 
- - Adicionar um planeta (name, weather e ground);
- - Listar planetas;
- - Buscar por nome;
- - Buscar por ID;
- - Remover planeta.
+## **Modelo da entidade**
 
-##  Executando a aplicação
-
-É necessário ter o ***docker*** e o ***docker-compose*** instalado na máquina local e executar o seguinte comando no terminal dentro da pasta do repositório:
+### Planet
 
 ```
-sudo docker-compose up --build
+name: <string>
+weather: <string>
+ground: <string>
 ```
 
-## Executando os testes
+## **Funcionalidades da entidade**
 
-- Alterar a variável de ambiente chamado ***NODE_ENV*** dentro do arquivo ```docker-compose.yml``` de ***development*** para ***test***;
-- ```sudo docker-compose up``` para rodar a aplicação;
-- ```docker ps``` para obter ***id*** do container da aplicação principal;
-- ```docker exec -it <container_id> bash``` para executar bash e "entrar" no container da aplicação principal;
-- ```npm test``` para executar os testes. 
+ - Inserção;
+ - Listagem;
+ - Busca por ID;
+ - Busca por nome;
+ - Atualização;
+ - Remoção.
 
-Para acessar as funcionalidades, é necessário passar no header da requisição o campo ```authorization: Bearer Token```, e siga as instruções abaixo:
+## **Rotas**
+### Inserção
 
-#### Gerar o token de acesso
-POST: localhost:3000/auth
- body: {user: ```usuario:senha```(base64)}
+```
+endpoint: /planet
 
-#### Adicionar um planeta (com nome, clima e terreno)
+method: POST
 
-POST: localhost:3000/planet/create
- - header: { "authorization": "Bearer Token" }
- - body: { "name" : "xxx", "weather" : "yyyyy", "ground" : "zzzzzz" }
+header: {
+    "Content-Type": "application/json"
+}
 
-#### Listar planetas
+body: { 
+    "name" : <string>,
+    "weather" : <string>,
+    "ground" : <string>
+}
+ ```
 
-GET: localhost:3000/planets
+#### Listagem
+```
+endpoint: /planet
 
-#### Buscar por nome;
+method: GET
 
-GET: localhost:3000/planet/name/:name
+header: {
+    "Content-Type": "application/json"
+}
+```
+#### Busca por nome
+```
+endpoint: /planet/:name
 
-#### Buscar por ID;
+params: {
+    name: <nome_planeta>
+}
 
-GET: localhost:3000/planets/id/:id
+method: GET
 
-#### Remover planeta
+header: {
+    "Content-Type": "application/json"
+}
 
-DELETE: localhost:3000/planets/name/:name
+```
+#### Busca por ID
+```
+endpoint: /planet/:id
 
+params: {
+    id: <id_planeta>
+}
+
+method: GET
+
+header: {
+    "Content-Type": "application/json"
+}
+```
+
+### Atualização
+
+```
+url: /planet/:id
+
+params: {
+    id: <id_planeta>
+}
+
+method: PUT
+
+header: {
+    "Content-Type": "application/json"
+}
+
+body: { 
+    "name" : <string>,
+    "weather" : <string>,
+    "ground" : <string>
+}
+```
+#### Remoção
+```
+endpoint: /planet/:id
+
+params: {
+    id: <id_planeta>
+}
+
+method: DELETE
+
+header: {
+    "Content-Type": "application/json"
+}
+```
+## **Requisitos para execução do projeto**
+
+Deve ter:
+- ***Docker*** e ***docker-compose*** instalado na máquina.
+
+### Para executar
+
+- ```git clone <url_repositorio>``` : clonar o repositório;
+- ```sudo docker-compose up```: rodar a aplicação
+
+Para acessar a API diretamente é preciso acessar ```http://localhost:3000``` + o endPoint.
+
+### Para executar os testes
+
+- ```yarn test``` para executar os testes.
